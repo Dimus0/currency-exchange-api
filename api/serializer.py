@@ -7,7 +7,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password']
+        fields = ['username', 'password']
 
 
     def create(self, validated_data):
@@ -19,3 +19,8 @@ class CurrencyExchangeSerializer(serializers.ModelSerializer):
     class Meta:
         model = CurrencyExchange
         fields = ['currency_code', 'rate','created_at']
+
+
+class CurrenciesConvertSerializer(serializers.Serializer):
+    currency_code = serializers.CharField(max_length=5)
+    amount = serializers.FloatField(min_value=0.01)
